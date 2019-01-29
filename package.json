@@ -1,11 +1,27 @@
 {
   "name": "vue-page-note",
   "version": "0.1.0",
-  "private": true,
+  "description": "A single page note taking application with rich text box with resize, rotate and move feature to take notes build with Vue.js",
+  "author": "JayeshLab <helloiamjayesh@gmail.com>",
+  "license": "MIT",
+  "keywords": [
+    "rich text editor",
+    "notes",
+    "vue",
+    "vue.js"
+  ],
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
+  },
+  "homepage": "https://github.com/JayeshLab/vue-page-note/#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JayeshLab/vue-page-note.git"
+  },
+  "bugs": {
+    "url": "https://github.com/JayeshLab/vue-page-note/issues"
   },
   "dependencies": {
     "vue": "^2.5.21",
