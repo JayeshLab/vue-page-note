@@ -6,6 +6,9 @@ Currently it is work in progress, adding more feature like incorporating google 
 
 Build with Vue.js, Vuex
 
+Demo: [https://jayeshlab.github.io/vue-page-note/](https://jayeshlab.github.io/vue-page-note/)
+
+
 ## Project setup
 ```
 npm install

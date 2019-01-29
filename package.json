@@ -13,6 +13,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "docs": "vue-cli-service build --dest docs",
     "lint": "vue-cli-service lint"
   },
   "homepage": "https://github.com/JayeshLab/vue-page-note/#readme",
