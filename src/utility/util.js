@@ -8,7 +8,7 @@ const createDefaultElement = (prop)=>{
     width:300,
     z: 0,
     rot: 0,
-    text: 'Double click to enter text here...',
+    text: 'Vue Page Note...',
     tempText: '',
     cursor: 'move',
     selected: false,

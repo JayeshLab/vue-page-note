@@ -39,44 +39,46 @@ body{
     float:left;
     list-style: none;
     width: 36px;
-    &:first-child a {
+    height: 32px;
+    &:first-child > a {
       border-left: none;
       border-radius:4px 0 0 4px
     }
-    &:last-child a {
+    &:last-child > a {
       border-right: none;
       border-radius:0 4px 4px 0
     }
+    > a {
+      background: #f4f7f9;
+      background: linear-gradient(to bottom, #f4f7f9 0%,#f7fafd 4%,#ecf2f7 30%,#e4ebf3 68%,#dce4ee 89%,#d5e0eb 92%,#c7d3e0 96%,#c6d2df 100%);
+      border-left: 1px solid rgba(79,123,170,.4);
+      border-right: 1px solid rgba(255,255,255,.3);
+      color: #40648a;
+      display: block;
+      height: 100%;
+      text-decoration: none;
+      text-shadow: 0 1px 0 #fff;
+      text-align: center;
+      vertical-align: middle;
+      i {
+        font-size: 24px;
+        line-height: 32px;
+      }
+      &:hover {
+        background: #aac5e0;
+        background: linear-gradient(to bottom, #aac5e0 0%,#adc8e4 4%,#a2c0de 30%,#9ab9da 68%,#92b2d5 89%,#8baed2 92%,#7da1c7 96%,#7ca0c6 100%);
+        color: #fff;
+        text-shadow: 0 1px 0 #40648a;
+      }
+      &.active {
+        background: #8aafd5;
+        background: linear-gradient(to bottom, #8aafd5 0%,#8db2d9 4%,#82aad3 30%,#7aa3cf 68%,#729cca 89%,#6b98c7 92%,#5d8bbc 96%,#5c8abb 100%);
+        box-shadow: 0 2px 3px rgba(0,0,0,.3) inset;
+        text-shadow: 0 -1px 0 #40648a;
+      }
+    }
   }
-  a{
-    background: #f4f7f9;
-    background: linear-gradient(to bottom, #f4f7f9 0%,#f7fafd 4%,#ecf2f7 30%,#e4ebf3 68%,#dce4ee 89%,#d5e0eb 92%,#c7d3e0 96%,#c6d2df 100%);
-    border-left: 1px solid rgba(79,123,170,.4);
-    border-right: 1px solid rgba(255,255,255,.3);
-    color: #40648a;
-    display: block;
-    height: 100%;
-    text-decoration: none;
-    text-shadow: 0 1px 0 #fff;
-    text-align: center;
-    vertical-align: middle;
-    i {
-      font-size: 24px;
-      line-height: 32px;
-    }
-    &:hover {
-      background: #aac5e0;
-      background: linear-gradient(to bottom, #aac5e0 0%,#adc8e4 4%,#a2c0de 30%,#9ab9da 68%,#92b2d5 89%,#8baed2 92%,#7da1c7 96%,#7ca0c6 100%);
-      color: #fff;
-      text-shadow: 0 1px 0 #40648a;
-    }
-    &.active {
-      background: #8aafd5;
-      background: linear-gradient(to bottom, #8aafd5 0%,#8db2d9 4%,#82aad3 30%,#7aa3cf 68%,#729cca 89%,#6b98c7 92%,#5d8bbc 96%,#5c8abb 100%);
-      box-shadow: 0 2px 3px rgba(0,0,0,.3) inset;
-      text-shadow: 0 -1px 0 #40648a;
-    }
-  }
+
 }
 //TransformControl
 .move-handle{

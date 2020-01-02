@@ -62,6 +62,7 @@ export default new Vuex.Store({
       }
     },
     savePage(state){
+      state.pageElements
       localStorage.setItem('pagenote',JSON.stringify(state.pageElements));
       localStorage.setItem('ecount',state.counter)
     },
