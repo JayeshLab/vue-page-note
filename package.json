@@ -3,40 +3,41 @@
   "version": "0.1.1",
   "description": "A single page note taking application with rich text box with resize, rotate and move feature to take notes build with Vue.js",
   "author": "JayeshLab <helloiamjayesh@gmail.com>",
-  "license": "MIT",
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "docs": "vue-cli-service build --dest docs"
+  },
+  "dependencies": {
+    "core-js": "^3.6.5",
+    "vue": "^2.6.11",
+    "vuex": "^3.5.1"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^4.4.6",
+    "@vue/cli-plugin-eslint": "^4.4.6",
+    "@vue/cli-service": "^4.4.6",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^5.16.0",
+    "eslint-plugin-vue": "^6.2.2",
+    "node-sass": "^4.14.1",
+    "sass-loader": "^7.3.1",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "bugs": {
+    "url": "https://github.com/JayeshLab/vue-page-note/issues"
+  },
+  "homepage": "https://github.com/JayeshLab/vue-page-note/#readme",
   "keywords": [
     "rich text editor",
     "notes",
     "vue",
     "vue.js"
   ],
-  "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "docs": "vue-cli-service build --dest docs",
-    "lint": "vue-cli-service lint"
-  },
-  "homepage": "https://github.com/JayeshLab/vue-page-note/#readme",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/JayeshLab/vue-page-note.git"
-  },
-  "bugs": {
-    "url": "https://github.com/JayeshLab/vue-page-note/issues"
-  },
-  "dependencies": {
-    "vue": "^2.6.11",
-    "vuex": "^3.1.2"
-  },
-  "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.12.1",
-    "@vue/cli-plugin-eslint": "^3.12.1",
-    "@vue/cli-service": "^3.12.1",
-    "babel-eslint": "^10.0.3",
-    "eslint": "^5.16.0",
-    "eslint-plugin-vue": "^5.2.3",
-    "node-sass": "^4.14.1",
-    "sass-loader": "^7.3.1",
-    "vue-template-compiler": "^2.6.11"
   }
 }

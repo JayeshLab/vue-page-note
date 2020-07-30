@@ -68,10 +68,11 @@ export default new Vuex.Store({
     },
     updateHtmlText(state, str) {
       state.selectedElement.text = str;
+      state.selectedElement.tmpText = '';
     },
     appendHtmlText(state, str) {
       if(state.selectedElement) {
-        state.selectedElement.text = state.selectedElement.text + str;
+        Vue.set(state.selectedElement, 'tmpText', str);
       }
     },
     clearPage(state) {

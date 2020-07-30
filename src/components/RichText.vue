@@ -1,11 +1,11 @@
 <template>
-  <div :contenteditable="item.editable" class="editbox" @dblclick.stop.prevent="onDblClick" @mousedown="mousedownHandle" :style="styleObj" @input="updateText" v-html="htext">
+  <div ref="i-${eid}" :contenteditable="item.editable" class="editbox" @dblclick.stop.prevent="onDblClick" @mousedown="mousedownHandle" :style="styleObj" @input="updateText" v-html="htext">
   </div>
 </template>
 <script>
   export default {
     props: {
-      elid : {
+      eid : {
         type: String
       }
     },
@@ -18,7 +18,18 @@
         htext:''
       }
     },
-    created() {
+    watch: {
+      'item.tmpText': function(nVal, oVal) {
+        console.log(oVal,  nVal);
+        if(nVal !== '') {
+          this.htext = this.$el.innerHTML + nVal;
+          this.$nextTick(() => {
+            this.updateText();
+          });
+        }
+      }
+    },
+    mounted() {
       this.htext = this.item.text;
     },
     methods: {
@@ -50,14 +61,14 @@
           document.removeEventListener('mousemove', this.mousemoveHandle, true)
           document.removeEventListener('mouseup', this.mouseupHandle, true)
         },
-        updateText(event) {
-          const strHtml = event.target.innerHTML;
+        updateText() {
+          const strHtml = this.$el.innerHTML;
           this.$store.commit('updateHtmlText', strHtml);
         }
     },
     computed: {
       item() {
-        return this.$store.getters.getElement(this.elid);
+        return this.$store.getters.getElement(this.eid);
       },
       styleObj() {
         const sty = {

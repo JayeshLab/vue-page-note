@@ -9,7 +9,7 @@ const createDefaultElement = (prop)=>{
     z: 0,
     rot: 0,
     text: 'Vue Page Note...',
-    tempText: '',
+    tmpText: '',
     cursor: 'move',
     selected: false,
     editable: false

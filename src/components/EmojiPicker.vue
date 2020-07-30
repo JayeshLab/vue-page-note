@@ -1,9 +1,9 @@
 <template>
   <li class="dropdown">
-    <a href="javascript:void(0)" class="emoji-button">😄</a>
+    <a href="javascript:void(0)" class="emoji-button">{{emojiIcon}}</a>
     <div class="emoji-content dropdown-content">
       <ul class="emoji-selector">
-        <li v-for="group in groups" :key="group.name"><a @click="selectGroup(group.name)">{{group.symbol}}😄️</a></li>
+        <li v-for="({name, sym}) in groups" :key="name" @click="selectGroup(name)"><a>{{sym}}</a></li>
       </ul>
       <div class="tab-content">
         <EmojiTab v-for="grp in groups" :key="`t-${grp.name}`" :selected="selectedGroup" :title="grp.name">
@@ -16,13 +16,15 @@
 <script>
   import emojis from '../utility/emojis';
   import EmojiTab from './EmojiTab.vue'
+
   export default {
     name: 'EmojiPicker',
     data() {
       return {
-        groups: [{name: 'People', symbol: '😄'}, {name: 'Nature', symbol: '🐶'}, {name: 'Objects', symbol:'⚽'},{name: 'Places', symbol: '🏠'}, {name: 'Symbols', symbol:'🔢'}],
+        groups: [{ "name" : 'People', "sym" : emojis['People']['smile']}, { "name" : 'Nature', "sym" : emojis['Nature']['dog']  }, { "name": 'Objects', "sym" : emojis['Objects']['gift'] }, { "name": 'Places', "sym" : emojis['Places']['house'] }, { "name": 'Symbols', "sym" : emojis['Symbols']['100']  }],
         selectedGroup: 'People',
-        emojis: emojis
+        emojis: emojis,
+        emojiIcon: '😄'
       }
     },
     components: {
@@ -102,7 +104,6 @@
       position: absolute;
       width: 210px;
       z-index: 99999;
-
       a {
         cursor: pointer;
         display: inline-block;
@@ -122,6 +123,7 @@
         width: 45px !important;
         height: 24px !important;
         line-height: 1.5;
+        cursor: pointer;
         a {
           font-size: 20px;
           border: none;
