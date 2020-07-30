@@ -2,7 +2,7 @@
   <div class="page" @click.stop.prevent="pageClick">
     <Toolbar></Toolbar>
     <div class="screen">
-      <components :is="element.type" v-for="element in elements" :key="element.id" :elprop="element"></components>
+      <components :is="element.type" v-for="element in elements" :key="element.id" :elid="element.id"></components>
     </div>
     <TransformControl></TransformControl>
   </div>

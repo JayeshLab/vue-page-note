@@ -1,16 +1,20 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import {createDefaultElement} from "./utility/util";
+import uid from './utility/uid';
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   strict: true,
   state: {
-    counter: 1,
-    pageElements: [],
-    selectedElement: {},
-    htmlText: ''
+    pageElements: {},
+    selectedElement: {}
+  },
+  getters: {
+    getElement: (state) => (id) => {
+      return state.pageElements[id];
+    }
   },
   mutations: {
     initialiseStore(state) {
@@ -22,27 +26,24 @@ export default new Vuex.Store({
       }
     },
     addTextElement(state, type) {
-      const element = createDefaultElement({id: state.counter,type: type});
-      state.pageElements.push(element);
-      state.counter += 1;
+      const id = uid(32);
+      const element = createDefaultElement({id: id, type: type});
+      Vue.set(state.pageElements, id , element);
     },
     removeTextElement(state) {
       const selectedId = state.selectedElement.id;
       state.selectedElement.selected = false;
       state.selectedElement.editable = false;
       state.selectedElement = {};
-      state.htmlText = '';
-      state.pageElements.splice(state.pageElements.findIndex(el => el.id === selectedId), 1);
+      Vue.delete(state.pageElements, selectedId);
     },
     selectElement(state, payload) {
       state.selectedElement.selected = false;
       state.selectedElement.editable = false;
-
-      Vue.set(state, 'selectedElement', state.pageElements.find(element => element.id === payload.id))
+      Vue.set(state, 'selectedElement', state.pageElements[payload.id])
       state.selectedElement.height = payload.h;
       state.selectedElement.width = payload.w;
       state.selectedElement.selected = true;
-      state.htmlText = state.selectedElement.text;
     },
     moveElement(state, payload) {
       Vue.set(state.selectedElement, 'x', payload.x)
@@ -64,16 +65,19 @@ export default new Vuex.Store({
     savePage(state){
       state.pageElements
       localStorage.setItem('pagenote',JSON.stringify(state.pageElements));
-      localStorage.setItem('ecount',state.counter)
     },
     updateHtmlText(state, str) {
-      state.htmlText = str;
+      state.selectedElement.text = str;
+    },
+    appendHtmlText(state, str) {
+      if(state.selectedElement) {
+        state.selectedElement.text = state.selectedElement.text + str;
+      }
     },
     clearPage(state) {
       localStorage.clear();
-      state.counter = 1;
       state.selectedElement = {};
-      state.pageElements = [];
+      state.pageElements = {};
     }
   },
   actions: {

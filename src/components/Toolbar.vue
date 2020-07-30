@@ -13,6 +13,7 @@
         <li><a href="javascript:void(0)" @click.stop.prevent="formatDoc('justifyright')"><i class="material-icons">format_align_right</i></a></li>
         <li><a href="javascript:void(0)" @click.stop.prevent="formatDoc('insertorderedlist')"><i class="material-icons">format_list_numbered</i></a></li>
         <li><a href="javascript:void(0)" @click.stop.prevent="formatDoc('insertunorderedlist')"><i class="material-icons">format_list_bulleted</i></a></li>
+        <EmojiPicker></EmojiPicker>
         <li class="dropdown">
           <a href="javascript:void(0)"><i class="material-icons">
             font_download
@@ -59,7 +60,11 @@
     </div>
 </template>
 <script>
+  import EmojiPicker from './EmojiPicker.vue'
 	export default {
+    components: {
+      EmojiPicker
+    },
 		methods: {
       addTextElement(type) {
         this.$store.commit('addTextElement',type);
@@ -113,11 +118,14 @@
     border-radius: 4px;
     background-color: #8795b7;
     left: -60px;
-    padding: 2px 0px;
+    padding: 1px 0px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
   }
-
+  .emoji-content {
+    width: 210px;
+    background: white;
+  }
   .dropdown-content a {
     background: #f4f7f9;
     padding: 8px;

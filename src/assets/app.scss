@@ -125,7 +125,7 @@ body{
 }
 .rh {
   top: 50%;
-  right: -6px;
+  right: -16px;
   margin-top: -6px;
   cursor: pointer;
 }
@@ -146,7 +146,7 @@ body{
   position: absolute;
   font-size: 20px;
   height: auto;
-  padding:0;
+  padding:3px 5px;
   margin:0;
   &:hover {
     outline: 1px dashed lightskyblue;
