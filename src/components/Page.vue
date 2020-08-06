@@ -1,5 +1,5 @@
 <template>
-  <div class="page" @click="pageClick" @keyup.delete="removeElement">
+  <div class="page" @click="pageClick">
     <Toolbar></Toolbar>
     <div class="screen">
       <components :is="element.type" v-for="element in pageElements" :key="element.id" :eid="element.id" @txtEvent="editboxSelect"></components>
@@ -47,10 +47,6 @@ export default {
     editboxSelect() {
       const selection = window.getSelection();
       this.range = selection.getRangeAt(0);
-    },
-    removeElement() {
-      this.$store.commit('setIsOpen', ["", false]);
-      this.$store.commit('removeElement')
     },
     pageClick(e) {
       if (e.target.classList.contains('page')) {
