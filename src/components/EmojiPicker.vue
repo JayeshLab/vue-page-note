@@ -1,21 +1,22 @@
 <template>
   <li class="dropdown">
-    <a href="javascript:void(0)" class="emoji-button">{{emojiIcon}}</a>
-    <div class="emoji-content dropdown-content">
+    <button @click.prevent="show = !show" v-tooltip="'Emoji'"><i class="material-icons">sentiment_satisfied_alt</i></button>
+    <PopOver :width="230" :height="245" v-show="show" style="padding:0">
       <ul class="emoji-selector">
-        <li v-for="({name, sym}) in groups" :key="name" @click="selectGroup(name)"><a>{{sym}}</a></li>
+        <li v-for="({name, sym}) in groups" :key="name" :class="[selectedGroup === name ? 'active': '']" @click.stop.prevent="selectGroup(name)"><a>{{sym}}</a></li>
       </ul>
       <div class="tab-content">
         <EmojiTab v-for="grp in groups" :key="`t-${grp.name}`" :selected="selectedGroup" :title="grp.name">
-          <a v-for="(value, name) in emojis[grp.name]" :key="name" @click="selectEmoji(value)">{{value}}</a>
+          <span class="icon" v-for="(value, name) in emojis[grp.name]" :key="name" @click.stop.prevent="selectEmoji(value)">{{value}}</span>
         </EmojiTab>
       </div>
-    </div>
+    </PopOver>
   </li>
 </template>
 <script>
   import emojis from '../utility/emojis';
   import EmojiTab from './EmojiTab.vue'
+  import PopOver from './PopOver.vue'
 
   export default {
     name: 'EmojiPicker',
@@ -23,17 +24,26 @@
       return {
         groups: [{ "name" : 'People', "sym" : emojis['People']['smile']}, { "name" : 'Nature', "sym" : emojis['Nature']['dog']  }, { "name": 'Objects', "sym" : emojis['Objects']['gift'] }, { "name": 'Places', "sym" : emojis['Places']['house'] }, { "name": 'Symbols', "sym" : emojis['Symbols']['100']  }],
         selectedGroup: 'People',
-        emojis: emojis,
-        emojiIcon: '😄'
+        emojis: emojis
       }
     },
     components: {
-      EmojiTab: EmojiTab
+      EmojiTab: EmojiTab,
+      PopOver: PopOver
+    },
+    computed: {
+      show: {
+        get() {
+          return this.$store.getters.getOpenState('emoji');
+        },
+        set(val) {
+          this.$store.commit("setIsOpen", ["emoji", val])
+        }
+      }
     },
     methods: {
-      selectEmoji(e) {
-        console.log(e);
-        this.$store.commit('appendHtmlText', e);
+      selectEmoji(em) {
+        this.$store.commit('setFormatEvent', ['insertText', em]);
       },
       selectGroup(name) {
         this.selectedGroup = name;
@@ -41,117 +51,3 @@
     }
   }
 </script>
-<style lang="scss">
-  $background-color: #fff;
-  $border-color: #ccc;
-  $box-shadow: inset 0 1px 2px rgba(0, 0, 0, .1);
-
-  .emoji-button {
-    cursor: pointer;
-    line-height: 1.6;
-    font-size: 22px;
-  }
-
-  .emoji {
-    color: transparent;
-    display: inline-block;
-    font-size: 18px;
-    font-style: normal;
-    height: 25px;
-    width: 25px;
-
-    &::selection {
-      background-color: highlight;
-      color: transparent;
-    }
-
-    &-image {
-      font-size: 14px;
-      line-height: 28px;
-    }
-
-    &-area {
-      clear: both;
-      position: relative;
-    }
-
-    &-editor {
-      -moz-appearance: textfield-multiline;
-      -webkit-appearance: textarea;
-
-      border: 1px solid $border-color;
-      border-radius: 3px;
-      box-shadow: $box-shadow;
-      box-sizing: border-box;
-      cursor: text;
-      font: medium -moz-fixed;
-      -webkit-font-smoothing: antialiased;
-      height: 100px;
-      overflow: auto;
-      padding: 5px;
-      resize: both;
-      width: 100%;
-
-      * {
-        margin: 0;
-        padding: 0;
-      }
-    }
-
-    &-picker {
-      background-color: $background-color;
-      border: 1px solid $border-color;
-      position: absolute;
-      width: 210px;
-      z-index: 99999;
-      a {
-        cursor: pointer;
-        display: inline-block;
-        font-size: 20px;
-        padding: 3px;
-
-      }
-    }
-
-    &-selector {
-      border-bottom: 1px solid $border-color;
-      display: flex;
-      padding: 0;
-      height: 36px;
-      background: linear-gradient(to bottom, #f4f7f9 0%, #f7fafd 4%, #ecf2f7 30%, #e4ebf3 68%, #dce4ee 89%, #d5e0eb 92%, #c7d3e0 96%, #c6d2df 100%);
-      li {
-        width: 45px !important;
-        height: 24px !important;
-        line-height: 1.5;
-        cursor: pointer;
-        a {
-          font-size: 20px;
-          border: none;
-          padding: 6px;
-          &:hover {
-            background-color: #5c8abb;
-          }
-        }
-      }
-    }
-
-    &-group {
-      display: grid;
-      grid-template-columns: repeat(6, 16.6666666%);
-      height: 200px;
-      overflow-y: scroll;
-      padding: 3px;
-      a {
-        background: white !important;
-        border: none !important;
-        padding: 3px !important;
-        display: inline-block;
-        font-size: 20px;
-        cursor: pointer;
-        &:hover {
-          background-color: #5c8abb;
-        }
-      }
-    }
-  }
-</style>

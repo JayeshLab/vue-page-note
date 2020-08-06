@@ -9,11 +9,16 @@ export default new Vuex.Store({
   strict: true,
   state: {
     pageElements: {},
-    selectedElement: {}
+    selectedElement: {},
+    formatEvent: ['color','#000000'],
+    isOpen: ""
   },
   getters: {
     getElement: (state) => (id) => {
       return state.pageElements[id];
+    },
+    getOpenState: (state) => (id) => {
+      return state.isOpen === id;
     }
   },
   mutations: {
@@ -30,7 +35,12 @@ export default new Vuex.Store({
       const element = createDefaultElement({id: id, type: type});
       Vue.set(state.pageElements, id , element);
     },
-    removeTextElement(state) {
+    addImageElement(state, payload) {
+      const id = uid(32);
+      const element = createDefaultElement({id: id, type: 'ImageElement', image: payload.image, height: payload.height, width: payload.width, text: ''});
+      Vue.set(state.pageElements, id , element);
+    },
+    removeElement(state) {
       const selectedId = state.selectedElement.id;
       state.selectedElement.selected = false;
       state.selectedElement.editable = false;
@@ -38,21 +48,26 @@ export default new Vuex.Store({
       Vue.delete(state.pageElements, selectedId);
     },
     selectElement(state, payload) {
-      state.selectedElement.selected = false;
-      state.selectedElement.editable = false;
-      Vue.set(state, 'selectedElement', state.pageElements[payload.id])
-      state.selectedElement.height = payload.h;
-      state.selectedElement.width = payload.w;
-      state.selectedElement.selected = true;
+      const prevElement = state.selectedElement;
+      if(prevElement) {
+        Vue.set(state.selectedElement, 'editable', false);
+        Vue.set(state.selectedElement, 'selected', false);
+      }
+      const element = Object.assign(state.pageElements[payload.id], {
+        height:payload.h,
+        width:payload.w,
+        tmpText: '',
+        selected: true
+      });
+      Vue.set(state, 'selectedElement', element);
     },
     moveElement(state, payload) {
       Vue.set(state.selectedElement, 'x', payload.x)
       Vue.set(state.selectedElement, 'y', payload.y)
     },
     pageSelected(state){
-      state.selectedElement.text = state.htmlText;
-      state.selectedElement.selected = false;
-      state.selectedElement.editable = false;
+      Vue.set(state.selectedElement, 'editable', false);
+      Vue.set(state.selectedElement, 'selected', false);
       state.selectedElement = {};
     },
     updateProperties(state, payload) {
@@ -66,19 +81,24 @@ export default new Vuex.Store({
       state.pageElements
       localStorage.setItem('pagenote',JSON.stringify(state.pageElements));
     },
-    updateHtmlText(state, str) {
-      state.selectedElement.text = str;
-      state.selectedElement.tmpText = '';
+    updateHtmlText(state, obj) {
+      Vue.set(state.selectedElement, 'text', obj.txt);
+      Vue.set(state.selectedElement, 'tmpText','');
+      Vue.set(state.selectedElement, 'height', obj.h);
+      Vue.set(state.selectedElement, 'witdh', obj.w);
     },
-    appendHtmlText(state, str) {
+    setFormatEvent(state, payload) {
       if(state.selectedElement) {
-        Vue.set(state.selectedElement, 'tmpText', str);
+        state.formatEvent = payload;
       }
     },
     clearPage(state) {
       localStorage.clear();
       state.selectedElement = {};
       state.pageElements = {};
+    },
+    setIsOpen(state, payload){
+      state.isOpen = payload[1] ? payload[0]: ""
     }
   },
   actions: {
