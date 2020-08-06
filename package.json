@@ -1,6 +1,6 @@
 {
   "name": "vue-page-note",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "A single page note taking application with rich text box with resize, rotate and move feature to take notes build with Vue.js",
   "author": "JayeshLab <helloiamjayesh@gmail.com>",
   "scripts": {
