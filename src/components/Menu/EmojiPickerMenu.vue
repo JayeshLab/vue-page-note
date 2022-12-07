@@ -14,9 +14,9 @@
   </li>
 </template>
 <script>
-  import emojis from '../utility/emojis';
-  import EmojiTab from './EmojiTab.vue'
-  import PopOver from './PopOver.vue'
+  import emojis from '@/utility/emojis';
+  import EmojiTab from '@/components/Elements/EmojiTab.vue'
+  import PopOver from '@/components/Menu/PopOver.vue'
 
   export default {
     name: 'EmojiPicker',

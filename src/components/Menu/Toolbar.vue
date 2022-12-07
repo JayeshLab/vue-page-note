@@ -1,8 +1,8 @@
-<template>
-  <div class="toolbar-container">
+b<template>
+  <div class="toolbar-container no-print">
     <ul class="toolbar cf">
       <li>
-        <button @click.stop.prevent="addTextElement('TextElement')" v-tooltip="`Add Text`"><i class="material-icons">text_fields</i></button>
+        <button @click.stop.prevent="addTextElement('TextElement')" v-tooltip="`Add Text`"><i class="material-icons">title</i></button>
       </li>
       <ImageMenu></ImageMenu>
     </ul>
@@ -14,7 +14,7 @@
         <button @click.stop.prevent="formatDoc('redo')" v-tooltip="'Redo'"><i class="material-icons">redo</i></button>
       </li>
       <li>
-        <button @click.stop.prevent="formatDoc('removeFormat')" v-tooltip="'Clean Format'"><i class="material-icons">cleaning_services</i></button>
+        <button @click.stop.prevent="formatDoc('removeFormat')" v-tooltip="'Clean Format'"><i class="material-icons">format_clear</i></button>
       </li>
     </ul>
     <ul class="toolbar cf">
@@ -59,8 +59,22 @@
         </PopOver>
       </li>
       <li class="dropdown">
+        <button @click="isSize = !isSize" v-tooltip="'Font Size'">
+          <i class="material-icons">format_size</i>
+        </button>
+        <PopOver :width="150" height="215" v-show="isSize">
+          <button @click.stop.prevent="formatDoc('fontsize','1')" class="tool-btn">Very small</button>
+          <button @click.stop.prevent="formatDoc('fontsize','2')" class="tool-btn">A bit small</button>
+          <button @click.stop.prevent="formatDoc('fontsize','3')" class="tool-btn">Normal</button>
+          <button @click.stop.prevent="formatDoc('fontsize','4')" class="tool-btn">Medium-large</button>
+          <button @click.stop.prevent="formatDoc('fontsize','5')" class="tool-btn">Big</button>
+          <button @click.stop.prevent="formatDoc('fontsize','6')" class="tool-btn">Very big</button>
+          <button @click.stop.prevent="formatDoc('fontsize','7')" class="tool-btn">Maximum</button>
+        </PopOver>
+      </li>
+      <li class="dropdown">
         <button @click="isFontSize = !isFontSize" v-tooltip="'Paragraph Format'">
-          <i class="material-icons">text_format</i>
+          <i class="material-icons">local_parking</i>
         </button>
         <PopOver :width="330" :height="30" v-show="isFontSize">
           <ul class="htoolbar">
@@ -96,7 +110,8 @@
           </ul>
         </PopOver>
       </li>
-      <ColorPicker></ColorPicker>
+      <ColorPicker type="forecolor" icon="format_color_text" tip="Text Color"></ColorPicker>
+      <ColorPicker type="backcolor" icon="color_lens" tip="Background Color"></ColorPicker>
     </ul>
     <ul class="toolbar cf">
       <li>
@@ -139,6 +154,14 @@
         },
         set(val) {
           this.$store.commit("setIsOpen", ["headings", val])
+        }
+      },
+      isSize: {
+        get() {
+          return this.$store.getters.getOpenState('size');
+        },
+        set(val) {
+          this.$store.commit("setIsOpen", ["size", val])
         }
       },
     },

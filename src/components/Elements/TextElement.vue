@@ -1,5 +1,5 @@
 <template>
-  <div :contenteditable="item.editable" class="editbox" @dblclick.stop.prevent="onDblClick" @mousedown="mousedownHandle" :style="styleObj" @blur="onSelect" @input="updateText" v-html="htext">
+  <div :contenteditable="item.editable" class="editbox" @click.stop.prevent="onDblClick" @mousedown="mousedownHandle" :style="styleObj" @blur="onSelect" @input="updateText" v-html="htext">
   </div>
 </template>
 <script>
