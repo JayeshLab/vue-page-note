@@ -26,7 +26,7 @@ Vue.directive('tooltip', {
 new Vue({
   store,
   beforeCreate() {
-    this.$store.commit('initialiseStore');
+    this.$store.dispatch('initialiseStore');
   },
   render: h => h(App)
 }).$mount('#app')

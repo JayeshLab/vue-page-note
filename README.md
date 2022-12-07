@@ -2,9 +2,29 @@
 
 A single page note taking application with rich text box with resize, rotate and move feature to take notes. User can copy and paste their notes on page and edit/format the notes on the page and save it locally.
 
-Currently it is work in progress, adding more feature like incorporating google fonts, adding images and editing those images, converting single page note into multiple page note with search feature.
+Features:
+1. Create Pages
+2. Add Text
+3. Add Image
+4. Google Fonts(Choose own Google font)
+5. Emoji Picker
+6. Text Foreground & Background color
+7. Create Pages
+8. Save locally in browser localstorage
+9. Text Format
+10. Text Align
+11. Resize, Rotate and Move both Text and Image
+12. Auto save on changes
+13. Undo and Redo changes
 
-Build with Vue.js, Vuex
+More Feature Coming...
+1. Saving to Google Drive
+2. Bring Forward and Send Backward Text and Images
+3. Add embedded videos links
+4. Add tables
+and more....
+
+Build with Vue.js 2, Vuex
 
 Demo: [https://jayeshlab.github.io/vue-page-note/](https://jayeshlab.github.io/vue-page-note/)
 

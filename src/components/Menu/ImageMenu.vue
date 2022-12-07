@@ -68,9 +68,15 @@
           if ( /\.(jpe?g|png|gif|svg)$/i.test(file.name) ) {
             const reader = new FileReader();
             reader.addEventListener("load", function() {
-              self.$store.commit('addImageElement', {height: this.height, image: this.result, width: this.width});
-              self.show = false;
-              self.imgurl = "";
+              const image = new Image();
+              image.src = this.result;
+              image.onload = function() {
+                const height = this.height;
+                const width = this.width;
+                self.$store.commit('addImageElement', {height: height, image: image.src, width: width});
+                self.show = false;
+                self.imgurl = "";
+              }
             }, false);
             reader.readAsDataURL(file);
           }

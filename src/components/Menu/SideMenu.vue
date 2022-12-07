@@ -12,38 +12,40 @@
       </div>
     </div>
     <div class="container">
-      <h2 class="menu_title"><img height="24px" width="24px" src="../assets/icon.png"/> Vue Page Note</h2>
-      <button>Add New Page</button>
-      <ul class="list_load">
-        <li class="list_item"><a href="#">List Item 01</a></li>
-        <li class="list_item"><a href="#">List Item 02</a></li>
-        <li class="list_item"><a href="#">List Item 03</a></li>
-        <li class="list_item"><a href="#">List Item 04</a></li>
-        <li class="list_item"><a href="#">List Item 05</a></li>
-        <li class="list_item"><a href="#">List Item 06</a></li>
-        <li class="list_item"><a href="#">List Item 07</a></li>
-        <li class="list_item"><a href="#">List Item 08</a></li>
+      <div class="menu_title"><img height="28px" width="28px" src="@/assets/icon.png"/> Vue Page Note</div>
+      <button class="vn-btn full-width" @click="addNewPage">Add New Page</button>
+      <ul class="page-list">
+        <li class="page-item" v-for="page in pages" :key="page.pid" @click="selectPage(page.pid)" :class="{ active: currentPage.pid == page.pid}">
+          <EditableTitle :page="page" :pid="currentPage.pid"></EditableTitle>
+        </li>
       </ul>
-      <div class="spacer_box"><p>This is a spacer box.</p></div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+import EditableTitle from "@/components/Menu/EditableTitle";
 export default {
   data() {
     return {
       isOpen: false
     }
   },
+  components: {
+    EditableTitle
+  },
   methods: {
     toggelMenu() {
       this.isOpen = !this.isOpen;
+    },
+    addNewPage () {
+      this.$store.dispatch('addNewPage');
+    },
+    selectPage(pageId) {
+      this.$store.dispatch('selectPage', pageId);
     }
-  }
+  },
+  computed: mapState(['pages', 'currentPage'])
 }
 </script>
-
-<style scoped>
-
-</style>

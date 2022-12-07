@@ -1,9 +1,9 @@
 <template>
-  <div :contenteditable="item.editable" class="editbox" @click.stop.prevent="onDblClick" @mousedown="mousedownHandle" :style="styleObj" @blur="onSelect" @input="updateText" v-html="htext">
+  <div :contenteditable="isContentEditable" class="editbox" @click.stop.prevent="onClick" @mousedown="mousedownHandle" :style="styleObj" @blur="onSelect" @input="updateText" v-html="htext">
   </div>
 </template>
 <script>
-  import controlMixin from './control-mixin'
+  import controlMixin from '../control-mixin'
   export default {
     name: 'TextElement',
     mixins: [controlMixin],
@@ -18,27 +18,12 @@
         htext: ''
       }
     },
-    watch: {
-      'item.tmpText': function (nVal) {
-        if (nVal !== '') {
-          const selection = window.getSelection();
-          if (selection.rangeCount > 0) {
-            selection.removeAllRanges();
-            selection.addRange(this.prevCursor);
-          }
-          document.execCommand('insertText', false, nVal);
-          this.$nextTick(() => {
-            this.updateText();
-          });
-        }
-      }
-    },
     mounted() {
-      this.htext = this.item.text;
+      this.htext = this.item.content;
     },
     methods: {
-      onDblClick() {
-        this.$store.commit('updateProperties', {editable: true})
+      onClick() {
+        this.$store.commit('setEditable', this.item.id);
         this.onSelect();
       },
       updateText() {

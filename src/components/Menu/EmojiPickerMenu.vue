@@ -15,14 +15,14 @@
 </template>
 <script>
   import emojis from '@/utility/emojis';
-  import EmojiTab from '@/components/Elements/EmojiTab.vue'
+  import EmojiTab from '@/components/Menu/EmojiTab.vue'
   import PopOver from '@/components/Menu/PopOver.vue'
 
   export default {
     name: 'EmojiPicker',
     data() {
       return {
-        groups: [{ "name" : 'People', "sym" : emojis['People']['smile']}, { "name" : 'Nature', "sym" : emojis['Nature']['dog']  }, { "name": 'Objects', "sym" : emojis['Objects']['gift'] }, { "name": 'Places', "sym" : emojis['Places']['house'] }, { "name": 'Symbols', "sym" : emojis['Symbols']['100']  }],
+        groups: [{ "name" : 'People', "sym" : emojis['People']['smile']}, { "name" : 'Nature', "sym" : emojis['Nature']['dog']  }, { "name" : 'Foods', "sym" : emojis['Foods']['green apple']  }, { "name": 'Objects', "sym" : emojis['Objects']['gift'] }, { "name": 'Places', "sym" : emojis['Places']['house'] }, { "name": 'Symbols', "sym" : emojis['Symbols']['100']  }],
         selectedGroup: 'People',
         emojis: emojis
       }

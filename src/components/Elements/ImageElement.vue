@@ -1,8 +1,8 @@
 <template>
-  <img :src="item.image" :height="item.image.height" class="image-element" :style="styleObj" @mousedown="mousedownHandle"/>
+  <img :src="item.content" :height="item.content.height" class="image-element" :style="styleObj" @mousedown="mousedownHandle"/>
 </template>
 <script>
-  import controlMixin from './control-mixin'
+  import controlMixin from '@/components/control-mixin'
 	export default {
     name: 'ImageElement',
     mixins: [controlMixin],

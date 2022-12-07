@@ -2,17 +2,17 @@
   <div class="page" @click="pageClick">
     <Toolbar></Toolbar>
     <div class="screen">
-      <components :is="element.type" v-for="element in pageElements" :key="element.id" :eid="element.id" @txtEvent="editboxSelect"></components>
+      <components :is="element.type" v-for="element in selectedPageElements" :key="element.id" :eid="element.id" @txtEvent="editboxSelect"></components>
     </div>
     <TransformControl></TransformControl>
   </div>
 </template>
 
 <script>
-  import Toolbar from './Toolbar.vue'
-  import TransformControl from './TransformControl.vue'
-  import TextElement from './TextElement.vue'
-  import ImageElement from './ImageElement.vue'
+  import Toolbar from '@/components/Menu/Toolbar.vue'
+  import TransformControl from '@/components/TransformControl.vue'
+  import TextElement from '@/components/Elements/TextElement.vue'
+  import ImageElement from '@/components/Elements/ImageElement.vue'
   import {mapState} from 'vuex'
 export default {
   name: 'Page',
@@ -41,7 +41,7 @@ export default {
      }
   },
   computed: {
-    ...mapState(['pageElements', 'formatEvent'])
+    ...mapState(['selectedPageElements', 'formatEvent'])
   },
   methods: {
     editboxSelect() {

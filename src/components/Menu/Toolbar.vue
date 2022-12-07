@@ -14,6 +14,9 @@ b<template>
         <button @click.stop.prevent="formatDoc('redo')" v-tooltip="'Redo'"><i class="material-icons">redo</i></button>
       </li>
       <li>
+        <button @click.stop.prevent="clearPage" v-tooltip="'Reset Page'"><i class="material-icons">restart_alt</i></button>
+      </li>
+      <li>
         <button @click.stop.prevent="formatDoc('removeFormat')" v-tooltip="'Clean Format'"><i class="material-icons">format_clear</i></button>
       </li>
     </ul>
@@ -48,14 +51,16 @@ b<template>
           <i class="material-icons">font_download</i>
         </button>
         <PopOver :width="200" height="240" v-show="isFontMenu">
-          <button @click.stop.prevent="formatDoc('fontname','Aladin')" style="font-family: Aladin" class="tool-btn">Aladin</button>
-          <button @click.stop.prevent="formatDoc('fontname','Kumar One Outline')" style="font-family: Kumar" class="tool-btn">Kumar</button>
-          <button @click.stop.prevent="formatDoc('fontname','Fredericka the Great')" style="font-family: Fredericka the Great" class="tool-btn">Fredericka the Great</button>
-          <button @click.stop.prevent="formatDoc('fontname','Indie Flower')" style="font-family: Indie Flower" class="tool-btn">Indie Flower</button>
-          <button @click.stop.prevent="formatDoc('fontname','Pacifico')" style="font-family: Pacifico" class="tool-btn">Pacifico</button>
-          <button @click.stop.prevent="formatDoc('fontname','Courier Prime')" style="font-family: Courier Prime" class="tool-btn">Courier Prime</button>
-          <button @click.stop.prevent="formatDoc('fontname','Poppins')" style="font-family: Poppins" class="tool-btn">Poppins</button>
-          <button @click.stop.prevent="formatDoc('fontname','Kaushan Script')" style="font-family: Kaushan Script" class="tool-btn">Kaushan Script</button>
+          <div v-for="font in fonts"  :key="font" class="font-display">
+            <button  @click.stop.prevent="formatDoc('fontname',font)" :style="{fontFamily: font}" class="font-btn">
+            {{ font }}
+            </button>
+            <button class="font-del-btn" @click="delFont(font)">X</button>
+          </div>
+          <div class="input-with-icon" style="margin-top: 10px">
+            <input class="input-link" type="text" v-model="fontName" placeholder="Add Google Font Name" @keyup.enter="addImageLink"/>
+            <i class="material-icons input-icon" @click="addFont">add</i>
+          </div>
         </PopOver>
       </li>
       <li class="dropdown">
@@ -112,27 +117,22 @@ b<template>
       </li>
       <ColorPicker type="forecolor" icon="format_color_text" tip="Text Color"></ColorPicker>
       <ColorPicker type="backcolor" icon="color_lens" tip="Background Color"></ColorPicker>
-    </ul>
-    <ul class="toolbar cf">
-      <li>
-        <button @click.stop.prevent="removeElement()" v-tooltip="'Remove Item'"><i class="material-icons">close</i></button>
-      </li>
-      <li>
-        <button @click.stop.prevent="savePage()" v-tooltip="'Save Page'"><i class="material-icons">save</i></button>
-      </li>
-      <li>
-        <button @click.stop.prevent="clearPage()" v-tooltip="'Delete Page'"><i class="material-icons">delete_forever</i></button>
-      </li>
+
     </ul>
   </div>
 </template>
 <script>
-  import EmojiPicker from './EmojiPicker.vue'
-  import ColorPicker from './ColorPicker.vue'
+  import EmojiPicker from './EmojiPickerMenu.vue'
+  import ColorPicker from './ColorPickerMenu.vue'
   import ImageMenu from './ImageMenu.vue'
   import PopOver from './PopOver.vue'
-
+  import WebFontLoader from 'webfontloader';
   export default {
+    data() {
+      return {
+        fontName: ''
+      }
+    },
     components: {
       EmojiPicker,
       ColorPicker,
@@ -164,19 +164,18 @@ b<template>
           this.$store.commit("setIsOpen", ["size", val])
         }
       },
+      fonts() {
+        return this.$store.state.fonts;
+      }
+
     },
     methods: {
       addTextElement(type) {
         this.$store.commit('setIsOpen', ["", false]);
         this.$store.commit('addTextElement', type);
       },
-      removeElement() {
-        this.$store.commit('setIsOpen', ["", false]);
-        this.$store.commit('removeElement')
-      },
       savePage() {
         this.$store.commit('setIsOpen', ["", false]);
-        this.$store.commit('savePage');
       },
       clearPage() {
         this.$store.commit('setIsOpen', ["", false]);
@@ -185,6 +184,23 @@ b<template>
       formatDoc(cmd, val) {
         this.$store.commit('setIsOpen', ["", false]);
         document.execCommand(cmd, false, val)
+      },
+      addFont() {
+        if(this.fontName != "") {
+          this.$store.commit('addFont', this.fontName);
+          const self = this;
+          WebFontLoader.load({
+            google: {
+              families: this.$store.state.fonts
+            },
+            active: function () { self.fontName = ""; }
+          });
+        }
+      },
+      delFont(fontName) {
+        if(fontName != "") {
+          this.$store.commit('delFont', fontName);
+        }
       }
     }
   }

@@ -1,9 +1,10 @@
 <template>
-  <div class="ctrl-container">
-    <div v-show="element.selected" class="control" :style="controlStyle">
+  <div class="ctrl-container no-print">
+    <div v-show="element.id === selected" class="control" :style="controlStyle">
       <div class="rot-handle" @mousedown.stop.prevent="mousedownHandle($event, 'rotation')">
         <div class="rhandle"/>
       </div>
+      <div class="del-handle del" @click="removeElement" title="Delete"></div>
       <div class="ctr-handle lh" @mousedown.stop.prevent="mousedownHandle($event, 'left')" v-if="isText">
         <div class="shandle"/>
       </div>
@@ -30,7 +31,8 @@
 	export default {
     computed: {
       ...mapState({
-        element: state => state.selectedElement
+        element: state => state.selectedElement,
+        selected: state => state.selected
       }),
       isText() {
         return this.element.type === 'TextElement';
@@ -40,7 +42,7 @@
           width: `${this.element.width}px`,
           height: `${this.element.height}px`,
           transform: `translate(${this.element.x}px, ${this.element.y}px) rotate(${this.element.rot}deg)`,
-          ...(this.element.selected && { outline : `1px solid blue`})
+          ...((this.element.id === this.selected) && { outline : `1px solid blue`})
         }
       }
     },
@@ -119,6 +121,10 @@
           var degree = (radians * (180 / Math.PI) * -1) + 180;
           this.$store.commit('updateProperties', {origin: 'center center', rot: degree})
         }
+      },
+      removeElement() {
+        this.$store.commit('setIsOpen', ["", false]);
+        this.$store.commit('removeElement')
       },
       mouseupHandle() {
         document.removeEventListener('mousemove', this.throttleFun, true);
