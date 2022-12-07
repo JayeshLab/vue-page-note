@@ -2,6 +2,8 @@
 
 A single page note taking application with rich text box with resize, rotate and move feature to take notes. User can copy and paste their notes on page and edit/format the notes on the page and save it locally.
 
+![vue-page-note](https://user-images.githubusercontent.com/36194663/206169878-19c08003-f233-4bc6-b5a4-a2eca6092ee7.PNG)
+
 Features:
 1. Create Pages
 2. Add Text
