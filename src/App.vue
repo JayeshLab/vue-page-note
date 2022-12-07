@@ -1,20 +1,20 @@
 <template>
   <div id="app">
     <SideMenu></SideMenu>
-    <Page></Page>
+    <PageNote></PageNote>
   </div>
 </template>
 
 <script>
 import SideMenu from "@/components/Menu/SideMenu";
-import Page from '@/components/Page.vue'
+import PageNote from '@/components/PageNote.vue'
 import WebFontLoader from 'webfontloader';
 
 export default {
   name: 'app',
   components: {
     SideMenu,
-    Page
+    PageNote
   },
   created() {
     WebFontLoader.load({
@@ -26,7 +26,8 @@ export default {
   },
   methods: {
     onFontLoaded() {
-      console.log('Fonts Loaded');
+      // eslint-disable-next-line 
+      console.log('Vue Page Notes - Fonts Loaded');
     }
   },
 }

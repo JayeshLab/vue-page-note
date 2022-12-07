@@ -1,4 +1,4 @@
-b<template>
+<template>
   <div class="toolbar-container no-print">
     <ul class="toolbar cf">
       <li>
@@ -128,6 +128,7 @@ b<template>
   import PopOver from './PopOver.vue'
   import WebFontLoader from 'webfontloader';
   export default {
+    name: "ToolbarMenu",
     data() {
       return {
         fontName: ''

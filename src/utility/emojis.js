@@ -644,6 +644,7 @@ export default {
     'heavy_dollar_sign': '💲',
     'currency_exchange': '💱',
     'x': '❌',
+    'green_tick': '✔️',
     'exclamation': '❗',
     'question': '❓',
     'grey_exclamation': '❕',

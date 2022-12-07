@@ -1,6 +1,6 @@
 {
   "name": "vue-page-note",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "A single page note taking application with rich text box with resize, rotate and move feature to take notes build with Vue.js",
   "author": "JayeshLab <helloiamjayesh@gmail.com>",
   "scripts": {
@@ -16,15 +16,16 @@
     "webfontloader": "^1.6.28"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^4.5.15",
-    "@vue/cli-plugin-eslint": "^4.5.15",
-    "@vue/cli-service": "^4.5.15",
-    "babel-eslint": "^10.1.0",
-    "eslint": "^6.7.2",
-    "eslint-plugin-vue": "^6.2.2",
+    "@vue/cli-plugin-babel": "^5.0.8",
+    "@vue/cli-plugin-eslint": "^5.0.8",
+    "@vue/cli-service": "^5.0.8",
+    "eslint": "^7.32.0",
+    "eslint-plugin-vue": "^8.0.3",
     "sass": "^1.49.7",
     "sass-loader": "^9.0.3",
-    "vue-template-compiler": "^2.6.11"
+    "vue-template-compiler": "^2.6.11",
+    "@babel/eslint-parser": "^7.12.16",
+    "@babel/core": "^7.12.16"
   },
   "bugs": {
     "url": "https://github.com/JayeshLab/vue-page-note/issues"

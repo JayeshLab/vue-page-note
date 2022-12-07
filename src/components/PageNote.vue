@@ -1,6 +1,6 @@
 <template>
   <div class="page" @click="pageClick">
-    <Toolbar></Toolbar>
+    <ToolbarMenu></ToolbarMenu>
     <div class="screen">
       <components :is="element.type" v-for="element in selectedPageElements" :key="element.id" :eid="element.id" @txtEvent="editboxSelect"></components>
     </div>
@@ -9,20 +9,20 @@
 </template>
 
 <script>
-  import Toolbar from '@/components/Menu/Toolbar.vue'
+  import ToolbarMenu from '@/components/Menu/ToolbarMenu.vue'
   import TransformControl from '@/components/TransformControl.vue'
   import TextElement from '@/components/Elements/TextElement.vue'
   import ImageElement from '@/components/Elements/ImageElement.vue'
   import {mapState} from 'vuex'
 export default {
-  name: 'Page',
+  name: 'PageNote',
   data() {
     return {
       range: null
     }
   },
   components: {
-    Toolbar,
+    ToolbarMenu,
     TransformControl,
     TextElement,
     ImageElement
