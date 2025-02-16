@@ -30,6 +30,8 @@ Build with Vue.js 2, Vuex
 
 Demo: [https://jayeshlab.github.io/vue-page-note/](https://jayeshlab.github.io/vue-page-note/)
 
+### New Vue3 version of vue-page-note is released 
+[https://github.com/JayeshLab/vue3-page-note](https://github.com/JayeshLab/vue3-page-note)
 
 ## Project setup
 ```
