@@ -1,5 +1,6 @@
 // Common CSS
-html, body {
+html,
+body {
   box-sizing: border-box;
   height: 100%;
   margin: 0;
@@ -8,7 +9,7 @@ html, body {
 }
 
 body {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   line-height: 1.2;
   -moz-osx-font-smoothing: grayscale;
@@ -27,7 +28,7 @@ body {
 div:focus-visible {
   outline: lightskyblue dashed 1px;
 }
-  /* width */
+/* width */
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -48,13 +49,14 @@ div:focus-visible {
 }
 
 @media print {
-  .no-print, .no-print * {
+  .no-print,
+  .no-print * {
     display: none !important;
   }
 }
 
 .d-flex {
-  display:flex;
+  display: flex;
 }
 //Toolbar
 .dropdown {
@@ -96,7 +98,7 @@ div:focus-visible {
 
   .toolbar {
     border-radius: 4px;
-    box-shadow: 0 0 3px rgba(0, 124, 255, .35), 0 2px 4px #466a90, 0px 11px 23px -5px rgba(64, 100, 138, .4);
+    box-shadow: 0 0 3px rgba(0, 124, 255, 0.35), 0 2px 4px #466a90, 0px 11px 23px -5px rgba(64, 100, 138, 0.4);
     display: flex;
     margin: 0 5px;
     padding: 0;
@@ -105,24 +107,24 @@ div:focus-visible {
       float: left;
       height: 32px;
       list-style: none;
-      width: 36px;
+      width: 32px;
 
       &:first-child > button {
         border-left: none;
-        border-radius: 4px 0 0 4px
+        border-radius: 4px 0 0 4px;
       }
 
       &:last-child > button {
         border-radius: 0 4px 4px 0;
-        border-right: none
+        border-right: none;
       }
 
       > button {
         background: #f4f7f9;
         background: linear-gradient(to bottom, #f4f7f9 0%, #f7fafd 4%, #ecf2f7 30%, #e4ebf3 68%, #dce4ee 89%, #d5e0eb 92%, #c7d3e0 96%, #c6d2df 100%);
         border-bottom: none;
-        border-left: 1px solid rgba(79, 123, 170, .4);
-        border-right: 1px solid rgba(255, 255, 255, .3);
+        border-left: 1px solid rgba(79, 123, 170, 0.4);
+        border-right: 1px solid rgba(255, 255, 255, 0.3);
         border-top: none;
         color: #40648a;
         cursor: pointer;
@@ -151,12 +153,11 @@ div:focus-visible {
         &.active {
           background: #8aafd5;
           background: linear-gradient(to bottom, #8aafd5 0%, #8db2d9 4%, #82aad3 30%, #7aa3cf 68%, #729cca 89%, #6b98c7 92%, #5d8bbc 96%, #5c8abb 100%);
-          box-shadow: 0 2px 3px rgba(0, 0, 0, .3) inset;
+          box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3) inset;
           text-shadow: 0 -1px 0 #40648a;
         }
       }
     }
-
   }
 }
 
@@ -171,7 +172,7 @@ div:focus-visible {
   outline: none;
   text-align: center;
   width: 100%;
-  white-space:nowrap;
+  white-space: nowrap;
 
   &:hover {
     background-color: #eaf2fa;
@@ -188,7 +189,7 @@ div:focus-visible {
   outline: none;
   text-align: left;
   width: 95%;
-  white-space:nowrap;
+  white-space: nowrap;
 
   &:hover {
     background-color: #eaf2fa;
@@ -205,7 +206,7 @@ div:focus-visible {
 }
 .font-display {
   display: flex;
-  &:hover > .font-del-btn{
+  &:hover > .font-del-btn {
     color: #fd3a17;
     background-color: #eaf2fa;
   }
@@ -294,7 +295,7 @@ div:focus-visible {
   border-radius: 20px;
   top: -20px;
   right: -20px;
-  box-shadow: 0 0 5px 1px rgba(219, 5, 5, .15), 0 0 0 1px rgba(255, 0, 0, .15);
+  box-shadow: 0 0 5px 1px rgba(219, 5, 5, 0.15), 0 0 0 1px rgba(255, 0, 0, 0.15);
   background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyB2aWV3Qm94PSIwIDAgMTIgMTIiIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2U9IiNmZjQ1MDAiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cGF0aCBkPSJNIDMuMTI4IDMuMjYzIEwgOC43MjYgOC44NjEgTSA4LjcyNiAzLjI2MyBMIDMuMTI4IDguODYxIiBzdHlsZT0iIi8+CiAgPHBhdGggc3Ryb2tlPSJub25lIiBkPSJNMCAwaDI0djI0SDB6IiBmaWxsPSJub25lIi8+CiAgPGNpcmNsZSBjeD0iNS45OTMiIGN5PSI2LjA0NyIgcj0iNS40NzEiIHN0eWxlPSIiLz4KPC9zdmc+");
 }
 .lh {
@@ -343,7 +344,7 @@ div:focus-visible {
 .rhandle {
   background: #fff;
   border-radius: 20px;
-  box-shadow: 0 0 5px 1px rgba(14, 19, 24, .15), 0 0 0 1px rgba(14, 19, 24, .15);
+  box-shadow: 0 0 5px 1px rgba(14, 19, 24, 0.15), 0 0 0 1px rgba(14, 19, 24, 0.15);
   height: 12px;
   width: 12px;
 }
@@ -351,7 +352,7 @@ div:focus-visible {
 .chandle {
   background: #fff;
   border-radius: 20px;
-  box-shadow: 0 0 5px 1px rgba(14, 19, 24, .15), 0 0 0 1px rgba(14, 19, 24, .15);
+  box-shadow: 0 0 5px 1px rgba(14, 19, 24, 0.15), 0 0 0 1px rgba(14, 19, 24, 0.15);
   height: 12px;
   width: 12px;
 }
@@ -361,14 +362,14 @@ div:focus-visible {
   height: 16px;
   background: #fff;
   border-radius: 20px;
-  box-shadow: 0 0 5px 1px rgba(14, 19, 24, .15), 0 0 0 1px rgba(14, 19, 24, .15);
+  box-shadow: 0 0 5px 1px rgba(14, 19, 24, 0.15), 0 0 0 1px rgba(14, 19, 24, 0.15);
 }
 
 //Tooltip
 .tooltip {
   padding: 4px 8px;
   background: #222;
-  color: #FFF;
+  color: #fff;
   position: absolute;
   top: 0;
   left: 0;
@@ -409,7 +410,6 @@ div:focus-visible {
   }
 }
 
-
 //HR Line
 .hr-line {
   border-bottom: 1px solid #555;
@@ -425,7 +425,6 @@ div:focus-visible {
     color: #555;
   }
 }
-
 
 //Color Picker
 .color-content {
@@ -575,7 +574,7 @@ div:focus-visible {
   background: #ffffff;
   border: 1px solid #cccccc;
   border-radius: 5px;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, .25);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
   margin-top: 9px;
   padding: 6px;
   position: relative;
@@ -584,7 +583,7 @@ div:focus-visible {
     border: 6px solid transparent;
     border-bottom-color: #ffffff;
     bottom: 100%;
-    content: ' ';
+    content: " ";
     height: 0;
     left: 50%;
     margin-left: -6px;
@@ -597,7 +596,7 @@ div:focus-visible {
     border: 7px solid transparent;
     border-bottom-color: #cccccc;
     bottom: 100%;
-    content: ' ';
+    content: " ";
     height: 0;
     left: 50%;
     margin-left: -7px;
@@ -639,7 +638,7 @@ div:focus-visible {
   float: none;
   height: 25px;
   padding: 10px;
-  opacity: .5;
+  opacity: 0.5;
   width: 25px;
   z-index: 600;
 }
@@ -736,7 +735,7 @@ div:focus-visible {
   font-weight: bold;
   margin: 10px 5px 15px;
   img {
-    margin-right:5px;
+    margin-right: 5px;
   }
 }
 .page-title-input {
@@ -766,10 +765,10 @@ div:focus-visible {
     background-repeat: no-repeat;
     display: none;
   }
-  &:hover  {
+  &:hover {
     background: rgba(166, 195, 238, 0.2);
     .title-btn {
-      display:block;
+      display: block;
     }
   }
 }
